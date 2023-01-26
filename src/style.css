@@ -3,11 +3,11 @@
   flex-direction: column;
   margin: 0 auto;
   max-width: 500px;
-  border-radius: 3px;
+  border-radius: 4px;
   justify-content: center;
   margin-top: 150px;
   text-align: left;
-  box-shadow: rgba(20, 18, 18, 0.2) 0 2px 8px 0;
+  box-shadow: rgba(19, 18, 18, 0.2) 0 2px 8px 0;
 }
 
 i {
@@ -70,7 +70,7 @@ i {
   align-content: center;
 }
 
-.add-new-task-container {
+.task-container {
   display: flex;
   flex-direction: row;
   gap: 150px;
@@ -95,7 +95,7 @@ input[type=text] {
 }
 
 input:focus {
-  border-color: rgb(92, 89, 90);
+  border-color: rgb(195, 188, 190);
 }
 
 .div-container {
@@ -112,7 +112,7 @@ input:focus {
 }
 
 .cleartodo a {
-  margin: 0;
+  margin-left: 20px;
   padding: 10px;
   text-align: center;
   color: #525252;
