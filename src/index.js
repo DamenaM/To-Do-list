@@ -1,5 +1,5 @@
 // import _ from 'lodash';
-// import './style.css';
+import './style.css';
 
 class Task {
   constructor() {
@@ -56,9 +56,16 @@ class Task {
     this.tasks.forEach((task, index) => {
       const ListDiv = document.createElement('div');
       ListDiv.innerHTML = `
-      <input type="checkbox" class="checkbox" id=${task.id}>  &nbsp ${task.title} &nbsp
-                <button class="remove-button"  data-index="${index}">Remove</button>
+      <div>
+      <input type="checkbox" class="checkbox" id=${task.id}>
+       &nbsp ${task.title} &nbsp
+      </div>
+      <div>
+      <button class="remove-button"  data-index="${index}">Remove</button>
                 <br><br>
+      </div>
+       
+      
             `;
       if (index % 2 === 0) {
         ListDiv.style.background = '#dddddd';
@@ -67,7 +74,7 @@ class Task {
       }
 
       this.taskDisplay.appendChild(ListDiv);
-      ListDiv.classList.add('book_list_container');
+      ListDiv.classList.add('task_list_container');
     });
 
     document.querySelectorAll('.remove-button').forEach((button) => {
@@ -77,7 +84,7 @@ class Task {
     });
 
     document.querySelectorAll('.checkbox').forEach((checkbox) => {
-      checkbox.addEventListener('click', () => {
+      checkbox.addEventListener('click', (event) => {
         this.myCheckbox(event.target);
       });
     });
