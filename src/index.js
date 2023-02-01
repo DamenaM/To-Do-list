@@ -1,5 +1,5 @@
 // import _ from 'lodash';
-import './style.css';
+// import './style.css';
 
 class Task {
   constructor() {
@@ -9,12 +9,12 @@ class Task {
     this.taskDisplay = document.querySelector('#display');
     this.buttonAdd = document.querySelector('#add');
     this.clearall = document.querySelector('#clearall');
-    this.checkbox = document.querySelector('#checkbox');
+    this.checkboxStatus = document.querySelector('#checkboxid');
     this.render();
   }
 
-  addTask(title, status) {
-    this.tasks.push({ title, status });
+  addTask(id, title, status) {
+    this.tasks.push({ id, title, status });
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
     this.render();
   }
@@ -31,23 +31,20 @@ class Task {
     this.render();
   }
 
-  removeTaskAll() {
-    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    this.render();
-    document.querySelector('#clearall').forEach((button) => {
-      button.addEventListener('click', () => {
-        this.render();
-      });
+  myCheckbox(target) {
+    this.tasks.forEach((task) => {
+      if (target.id === task.id) {
+        if (target.checked) {
+          task.status = true;
+        } else {
+          task.status = false;
+        }
+      }
     });
-  }
 
-  /*   disable() {
-    document.getElementById('checkbox').disabled = true;
+    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    // this.render()
   }
-
-  undisable() {
-    document.getElementById('checkbox').disabled = false;
-  } */
 
   render() {
     this.taskDisplay.innerHTML = '';
@@ -55,21 +52,22 @@ class Task {
     if (this.tasks.length === 0) {
       this.taskDisplay.classList.remove('task_container');
     }
+
     this.tasks.forEach((task, index) => {
-      const div = document.createElement('div');
-      div.innerHTML = `
-      <input type="checkbox" class="checkbox" id="checkbox" >  &nbsp ${task.title} &nbsp
-                <button class="remove-button" data-index="${index}">Remove</button>
+      const ListDiv = document.createElement('div');
+      ListDiv.innerHTML = `
+      <input type="checkbox" class="checkbox" id=${task.id}>  &nbsp ${task.title} &nbsp
+                <button class="remove-button"  data-index="${index}">Remove</button>
                 <br><br>
             `;
       if (index % 2 === 0) {
-        div.style.background = '#dddddd';
+        ListDiv.style.background = '#dddddd';
       } else {
-        div.style.background = '#fff';
+        ListDiv.style.background = '#fff';
       }
 
-      this.taskDisplay.appendChild(div);
-      div.classList.add('book_list_container');
+      this.taskDisplay.appendChild(ListDiv);
+      ListDiv.classList.add('book_list_container');
     });
 
     document.querySelectorAll('.remove-button').forEach((button) => {
@@ -80,7 +78,17 @@ class Task {
 
     document.querySelectorAll('.checkbox').forEach((checkbox) => {
       checkbox.addEventListener('click', () => {
-        this.addTaskUpdate();
+        this.myCheckbox(event.target);
+      });
+    });
+
+    document.querySelectorAll('.clear-completed-task').forEach((button) => {
+      button.addEventListener('click', () => {
+        this.tasks = this.tasks.filter((tasklist) => !tasklist.status);
+
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        const completedElements = document.querySelectorAll('.checkbox');
+        completedElements.forEach((element) => element.remove());
       });
     });
   }
@@ -89,15 +97,10 @@ class Task {
 const task = new Task();
 
 task.buttonAdd.addEventListener('click', () => {
+  const id = `${new Date().getTime()}`;
   const title = task.taskTitle.value;
-  const status = 'false';
-
-  task.addTask(title, status);
+  const status = false;
+  task.addTask(id, title, status);
   task.taskTitle.value = '';
   task.taskStatus.value = '';
-});
-
-task.clearall.addEventListener('click', () => {
-  localStorage.setItem('tasks', JSON.stringify(this.tasks));
-  this.remove();
 });
