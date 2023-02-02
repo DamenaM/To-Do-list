@@ -25,6 +25,7 @@ const taskapp = () => {
 
     editTask(target) {
       const todo = localStorage.getItem('tasks');
+      // eslint-disable-next-line
           const toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling.innerHTML;
 
       const taskTitle = document.querySelector('#task-description');
@@ -51,7 +52,6 @@ const taskapp = () => {
       });
 
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
-   
     }
 
     render() {
