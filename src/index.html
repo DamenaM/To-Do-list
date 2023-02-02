@@ -2,57 +2,54 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/f5f70a395d.js"
-    crossorigin="anonymous"></script>
-    <title> To do List</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/f5f70a395d.js" crossorigin="anonymous"></script>
+  <title> To do List</title>
 </head>
 
 <body>
-    <div class="all-container">
-        <div class="container-main">
-          <div class="header-list">
-             <h1>To-do Task</h1>
-             <i class="fa-solid fa-rotate pointer" id="refresh"></i>
+  <div class="all-container">
+    <div class="container-main">
+      <div class="header-list">
+        <h1>To-do Task</h1>
+        <i class="fa-solid fa-rotate pointer" id="refresh"></i>
+      </div>
+      <div>
+        <ul class="todo-list" id="todo-list">
+        </ul>
+      </div>
+      <div class="container-form">
+
+        <div class="wrapper">
+          <form action="" id="new-task" class="task-container row">
+            <input type="text" class="input" placeholder="Add to your list..." id="task-description">
+            <button id="add" type="submit" class="pointer"><i class="fa fa-reply"></i></button>
+
+          </form>
+          <div id="display">
+
+
           </div>
-          <div>
-            <ul class="todo-list" id="todo-list">
-            </ul>
-        </div>
-          <div class="container-form">
-                
-             <div class="wrapper">
-              <form action="" id="new-task" class="task-container row">
-                <input type="text" class="input" placeholder="Add to your list..." id="task-description">
-                <!-- <input type="text" name="title" id="title" placeholder="Title" class="input_title"> <br>
-                <input type="text" name="Author" placeholder="Author" id="author" class="input_author"> <br> -->
-                <button id="add" type="submit" class="pointer"><i class="fa fa-reply"></i></button>
-               
-             </form>
-              <div id="display">
-      
-      
-              </div>
-              <br>
-              
-              <div class="cleartodo">
-                  <a href="" id="clearall" class="clear-completed-task">Clear all completed</a>
-                  <p id="text" style="display:none">Checkbox is CHECKED!</p>
-                         </div>
-          </div>
-         
+          <br>
+
+          <div class="cleartodo">
+            <a href="" id="clearall" class="clear-completed-task">Clear all completed</a>
+            <p id="text" style="display:none">Checkbox is CHECKED!</p>
           </div>
         </div>
- 
-     </div>
-   
-    <script src="index.js"></script>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="index.js"></script>
 </body>
 
 </html>

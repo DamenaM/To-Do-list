@@ -112,7 +112,6 @@ Feel free to check the [issues page](https://github.com/DamenaM/Awesome-books.gi
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-> I would like to thank (Cindy Shin)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

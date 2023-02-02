@@ -25,6 +25,18 @@ class Task {
     this.render();
   }
 
+  editTask(target) {
+    const todo = localStorage.getItem('tasks');
+    // eslint-disable-next-line
+    const toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling.innerHTML;
+
+    const taskTitle = document.querySelector('#task-description');
+    taskTitle.value = toBeEdited;
+
+    this.tasks = JSON.parse(todo);
+    this.tasks.splice(target, 1);
+  }
+
   addTaskUpdate(index) {
     this.tasks.splice(index, 0);
     localStorage.setItem('tasks', JSON.stringify(this.tasks));
@@ -57,10 +69,11 @@ class Task {
       const ListDiv = document.createElement('div');
       ListDiv.innerHTML = `
       <div>
-      <input type="checkbox" class="checkbox" id=${task.id}>
-       &nbsp ${task.title} &nbsp
+        <input type="checkbox" class="checkbox" id=${task.id}>
+        <span> ${task.title} </span>
       </div>
       <div>
+      <button class="edit-button"  data-index-edit ="${task.id}">edit</button>
       <button class="remove-button"  data-index="${index}">Remove</button>
                 <br><br>
       </div>
@@ -76,7 +89,11 @@ class Task {
       this.taskDisplay.appendChild(ListDiv);
       ListDiv.classList.add('task_list_container');
     });
-
+    document.querySelectorAll('.edit-button').forEach((button) => {
+      button.addEventListener('click', (event) => {
+        this.editTask(event.target);
+      });
+    });
     document.querySelectorAll('.remove-button').forEach((button) => {
       button.addEventListener('click', () => {
         this.removeTask(button.getAttribute('data-index'));
