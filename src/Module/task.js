@@ -1,7 +1,4 @@
-// import { create } from 'lodash';
-
-const taskapp = () => {
-  class Task {
+class Task {
     constructor() {
       this.tasks = JSON.parse(localStorage.getItem('tasks')) || [];
       this.taskTitle = document.querySelector('#task-description');
@@ -133,16 +130,4 @@ const taskapp = () => {
       });
     }
   }
-
-  const task = new Task();
-
-  task.buttonAdd.addEventListener('click', () => {
-    const id = `${new Date().getTime()}`;
-    const title = task.taskTitle.value;
-    const status = false;
-    task.addTask(id, title, status);
-    task.taskTitle.value = '';
-    task.taskStatus.value = '';
-  });
-};
-export default taskapp;
+  export default Task;
