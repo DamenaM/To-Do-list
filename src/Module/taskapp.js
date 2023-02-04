@@ -47,7 +47,7 @@ const taskapp = () => {
 
         }
 
-        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        // localStorage.setItem('tasks', JSON.stringify(this.tasks));
       });
       this.tasks.splice(index, 1);
     }
