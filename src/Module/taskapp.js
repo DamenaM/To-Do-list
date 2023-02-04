@@ -26,12 +26,21 @@ const taskapp = () => {
     editTask(target) {
       const todo = localStorage.getItem('tasks');
       // eslint-disable-next-line
-          const toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling.innerHTML;
-
-      const taskTitle = document.querySelector('#task-description');
-      taskTitle.value = toBeEdited;
-      this.tasks = JSON.parse(todo);
-      this.tasks.splice(target, 1);
+      const toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling;
+      // eslint-disable-next-line
+      const targetededit = target.parentNode.previousElementSibling.lastElementChild.lastChild;
+      toBeEdited.addEventListener('keypress', (target) => {
+        if (target.key === 'Enter') {
+          const id = `${new Date().getTime()}`;
+          const title = toBeEdited.innerText;
+          const status = false;
+          // eslint-disable-next-line
+          task.addTask(id, title, status);
+          toBeEdited.appendChild(targetededit);
+        }
+        this.tasks = JSON.parse(todo);
+        this.tasks.splice(target, 1);
+      });
     }
 
     addTaskUpdate(index) {
@@ -69,12 +78,10 @@ const taskapp = () => {
               <span> ${task.title} </span>
             </div>
             <div>
-            <button class="edit-button"  data-index-edit ="${task.id}">edit</button>
-            <button class="remove-button"  data-index="${index}">Remove</button>
+            <button class="fa-ellipsis-v"  data-index-edit ="${task.id}">edit</i></button>
+            <button class="material-symbols-outlined"  data-index="${index}">delete</button>
                       <br><br>
             </div>
-             
-            
                   `;
         if (index % 2 === 0) {
           ListDiv.style.background = '#dddddd';
@@ -84,13 +91,31 @@ const taskapp = () => {
 
         this.taskDisplay.appendChild(ListDiv);
         ListDiv.classList.add('task_list_container');
+
+        ListDiv.addEventListener('click', (event) => {
+          this.editTask(event.target);
+
+          if (event.target.classList.contains('fa-ellipsis-v')) {
+            event.target.classList.remove('fa-ellipsis-v');
+            event.target.classList.add('material-symbols-outlined');
+            event.target.parentElement.parentElement.style.backgroundColor = '#b4d5fe';
+            const targeted = event.target.parentNode.previousElementSibling.lastElementChild;
+            targeted.contentEditable = 'true';
+          } else if (event.target.classList.contains('material-symbols-outlined')) {
+            const li = document.createElement('li');
+            li.setAttribute('class', 'fa fa-sync');
+          }
+          const todo = localStorage.getItem('tasks');
+          this.tasks = JSON.parse(todo);
+        });
       });
-      document.querySelectorAll('.edit-button').forEach((button) => {
-        button.addEventListener('click', (event) => {
+
+      document.querySelectorAll('.fa-ellipsis-v').forEach((e) => {
+        e.addEventListener('click', (event) => {
           this.editTask(event.target);
         });
       });
-      document.querySelectorAll('.remove-button').forEach((button) => {
+      document.querySelectorAll('.material-symbols-outlined').forEach((button) => {
         button.addEventListener('click', () => {
           this.removeTask(button.getAttribute('data-index'));
         });
@@ -105,7 +130,6 @@ const taskapp = () => {
       document.querySelectorAll('.clear-completed-task').forEach((button) => {
         button.addEventListener('click', () => {
           this.tasks = this.tasks.filter((tasklist) => !tasklist.status);
-
           localStorage.setItem('tasks', JSON.stringify(this.tasks));
           const completedElements = document.querySelectorAll('.checkbox');
           completedElements.forEach((element) => element.remove());
