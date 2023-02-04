@@ -36,8 +36,8 @@ const taskapp = () => {
           const status = false;
           // eslint-disable-next-line
           task.addTask(id, title, status);
-          toBeEdited.appendChild(targetededit);
         }
+
         this.tasks = JSON.parse(todo);
         this.tasks.splice(target, 1);
       });
@@ -53,13 +53,15 @@ const taskapp = () => {
       this.tasks.forEach((task) => {
         if (target.id === task.id) {
           if (target.checked) {
+            // eslint-disable-next-line
+            const toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling;
+            toBeEdited.style.textDecoration = 'line-through';
             task.status = true;
           } else {
             task.status = false;
           }
         }
       });
-
       localStorage.setItem('tasks', JSON.stringify(this.tasks));
     }
 
@@ -78,11 +80,12 @@ const taskapp = () => {
               <span> ${task.title} </span>
             </div>
             <div>
-            <button class="fa-ellipsis-v"  data-index-edit ="${task.id}">edit</i></button>
+            <button class="fa-solid fa-pen-to-square"  data-index-edit ="${task.id}"></button>
             <button class="material-symbols-outlined"  data-index="${index}">delete</button>
-                      <br><br>
+           
             </div>
                   `;
+
         if (index % 2 === 0) {
           ListDiv.style.background = '#dddddd';
         } else {
@@ -94,10 +97,10 @@ const taskapp = () => {
 
         ListDiv.addEventListener('click', (event) => {
           this.editTask(event.target);
-
-          if (event.target.classList.contains('fa-ellipsis-v')) {
-            event.target.classList.remove('fa-ellipsis-v');
-            event.target.classList.add('material-symbols-outlined');
+          event.target.style.display = 'none';
+          if (event.target.classList.contains('fa-solid')) {
+            // event.target.classList.remove('fa-ellipsis-v');
+            //  event.target.classList.add('material-symbols-outlined');
             event.target.parentElement.parentElement.style.backgroundColor = '#b4d5fe';
             const targeted = event.target.parentNode.previousElementSibling.lastElementChild;
             targeted.contentEditable = 'true';
@@ -110,7 +113,7 @@ const taskapp = () => {
         });
       });
 
-      document.querySelectorAll('.fa-ellipsis-v').forEach((e) => {
+      document.querySelectorAll('.fa-solid fa-pen-to-square').forEach((e) => {
         e.addEventListener('click', (event) => {
           this.editTask(event.target);
         });
