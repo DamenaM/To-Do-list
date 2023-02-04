@@ -1,3 +1,5 @@
+// import { create } from 'lodash';
+
 const taskapp = () => {
   class Task {
     constructor() {
@@ -23,12 +25,18 @@ const taskapp = () => {
       this.render();
     }
 
-    editTask(target) {
-      const todo = localStorage.getItem('tasks');
+    newEditTask(index) {  // eslint-disable-line
       // eslint-disable-next-line
-      const toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling;
-      // eslint-disable-next-line
-      const targetededit = target.parentNode.previousElementSibling.lastElementChild.lastChild;
+      const toBeEdited = event.target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling;
+      toBeEdited.contentEditable = 'true';
+      toBeEdited.style.border = '1px solid black';
+
+      if (event.target.classList.contains('fa-solid')) {// eslint-disable-line
+
+        event.target.parentElement.parentElement.style.backgroundColor = '#b4d5fe';// eslint-disable-line
+      }
+
+      event.target.style.display = 'none';// eslint-disable-line
       toBeEdited.addEventListener('keypress', (target) => {
         if (target.key === 'Enter') {
           const id = `${new Date().getTime()}`;
@@ -38,7 +46,6 @@ const taskapp = () => {
           task.addTask(id, title, status);
         }
 
-        this.tasks = JSON.parse(todo);
         this.tasks.splice(target, 1);
       });
     }
@@ -51,14 +58,15 @@ const taskapp = () => {
 
     myCheckbox(target) {
       this.tasks.forEach((task) => {
+        // eslint-disable-next-line
+         let toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling;
         if (target.id === task.id) {
           if (target.checked) {
-            // eslint-disable-next-line
-            const toBeEdited = target.parentElement.parentElement.firstChild.nextElementSibling.lastChild.previousElementSibling;
             toBeEdited.style.textDecoration = 'line-through';
             task.status = true;
           } else {
             task.status = false;
+            toBeEdited.style.textDecoration = 'none';
           }
         }
       });
@@ -80,7 +88,7 @@ const taskapp = () => {
               <span> ${task.title} </span>
             </div>
             <div>
-            <button class="fa-solid fa-pen-to-square"  data-index-edit ="${task.id}"></button>
+            <button class="fa-solid fa-pen-to-square"  data-index-edit ="${index}"></button>
             <button class="material-symbols-outlined"  data-index="${index}">delete</button>
            
             </div>
@@ -94,28 +102,11 @@ const taskapp = () => {
 
         this.taskDisplay.appendChild(ListDiv);
         ListDiv.classList.add('task_list_container');
-
-        ListDiv.addEventListener('click', (event) => {
-          this.editTask(event.target);
-          event.target.style.display = 'none';
-          if (event.target.classList.contains('fa-solid')) {
-            // event.target.classList.remove('fa-ellipsis-v');
-            //  event.target.classList.add('material-symbols-outlined');
-            event.target.parentElement.parentElement.style.backgroundColor = '#b4d5fe';
-            const targeted = event.target.parentNode.previousElementSibling.lastElementChild;
-            targeted.contentEditable = 'true';
-          } else if (event.target.classList.contains('material-symbols-outlined')) {
-            const li = document.createElement('li');
-            li.setAttribute('class', 'fa fa-sync');
-          }
-          const todo = localStorage.getItem('tasks');
-          this.tasks = JSON.parse(todo);
-        });
       });
 
-      document.querySelectorAll('.fa-solid fa-pen-to-square').forEach((e) => {
-        e.addEventListener('click', (event) => {
-          this.editTask(event.target);
+      document.querySelectorAll('.fa-solid').forEach((event) => {
+        event.addEventListener('click', () => {
+          this.newEditTask(event.getAttribute('data-index-edit'));
         });
       });
       document.querySelectorAll('.material-symbols-outlined').forEach((button) => {
