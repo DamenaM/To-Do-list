@@ -33,7 +33,7 @@ const taskapp = () => {
 
       if (event.target.classList.contains('fa-solid')) {// eslint-disable-line
 
-        event.target.parentElement.parentElement.style.backgroundColor = '#b4d5fe';// eslint-disable-line
+        event.target.parentElement.parentElement.style.backgroundColor = ' #f6ee78';// eslint-disable-line
       }
 
       event.target.style.display = 'none';// eslint-disable-line
@@ -44,10 +44,12 @@ const taskapp = () => {
           const status = false;
           // eslint-disable-next-line
           task.addTask(id, title, status);
+
         }
 
-        this.tasks.splice(target, 1);
+        // localStorage.setItem('tasks', JSON.stringify(this.tasks));
       });
+      this.tasks.splice(index, 1);
     }
 
     addTaskUpdate(index) {

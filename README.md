@@ -112,7 +112,7 @@ Feel free to check the [issues page](https://github.com/DamenaM/Awesome-books.gi
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-
+Coding Partener @Yodit Abebe 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
