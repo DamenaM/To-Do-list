@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675948121057" clover="3.2.0">
-  <project timestamp="1675948121057" name="All files">
+<coverage generated="1675962933203" clover="3.2.0">
+  <project timestamp="1675962933204" name="All files">
     <metrics statements="83" coveredstatements="48" conditionals="23" coveredconditionals="8" methods="29" coveredmethods="18" elements="135" coveredelements="74" complexity="0" loc="83" ncloc="83" packages="1" files="2" classes="2"/>
-    <file name="toDoList.js" path="F:\@Microverse\Module- 02\Block 03\To-Do-list\src\modules\toDoList.js">
+    <file name="toDoList.js" path="C:\Users\user\Desktop\test\To-Do-list\src\modules\toDoList.js">
       <metrics statements="40" coveredstatements="30" conditionals="21" coveredconditionals="8" methods="13" coveredmethods="9"/>
       <line num="5" count="1" type="cond" truecount="2" falsecount="0"/>
       <line num="8" count="36" type="stmt"/>
@@ -45,7 +45,7 @@
       <line num="72" count="0" type="stmt"/>
       <line num="73" count="0" type="stmt"/>
     </file>
-    <file name="toDoListSupport.js" path="F:\@Microverse\Module- 02\Block 03\To-Do-list\src\modules\toDoListSupport.js">
+    <file name="toDoListSupport.js" path="C:\Users\user\Desktop\test\To-Do-list\src\modules\toDoListSupport.js">
       <metrics statements="43" coveredstatements="18" conditionals="2" coveredconditionals="0" methods="16" coveredmethods="9"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="9" type="stmt"/>
