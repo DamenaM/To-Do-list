@@ -1,133 +1,161 @@
-.all-container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  max-width: 500px;
-  border-radius: 4px;
-  justify-content: center;
-  margin-top: 150px;
-  text-align: left;
-  box-shadow: rgba(19, 18, 18, 0.2) 0 2px 8px 0;
-}
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-.task_list_container {
-  display: flex;
-  justify-content: space-between;
-}
-
-i {
-  color: #a1a1a1;
-}
-
-.edit-task {
-  margin-left: 98%;
-}
-
-#refresh {
-  margin-right: 0;
-}
-
-.header-list > h1 {
-  font-size: 18px;
-  font-weight: 500;
+* {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  color: #525252;
 }
 
-.header-list #refresh {
-  color: grey;
+ul,
+li {
+  list-style-type: none;
 }
 
-.container-main {
-  text-align: left;
+.container {
   display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  border-radius: 3px;
   justify-content: center;
-  margin-top: 40%;
 }
 
-.header-list {
-  margin-top: -200px;
-  padding: 10px;
-  border-bottom: 1px solid #ebebeb;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-}
-
-.container-form {
-  padding: 10px;
-}
-
-.todo-list {
-  margin-left: -40px;
-}
-
-.todo-list > li {
-  font-size: 14px;
-  font-weight: 300;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-}
-
-.task-container {
-  display: flex;
-  flex-direction: row;
-  gap: 150px;
-}
-
-.input {
-  border: 0;
-  background-color: transparent;
-  color: #525252;
-  font-size: 15px;
-  width: 89%;
-}
-
-.description-task {
-  padding: 30px;
-  font-weight: 500;
-}
-
-input[type=text] {
-  outline: 0;
-  font-style: italic;
-}
-
-input:focus {
-  border-color: rgb(195, 188, 190);
-}
-
-.div-container {
+.container-wrapper {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #ebebeb;
-  gap: 50px;
+  justify-content: center;
+  width: 70%;
+  border: 1px solid #ddd;
+  box-shadow: 6px 6px 6px #ddd, -6px -6px 6px #ddd;
+  margin-top: 3.5rem;
 }
 
-.todo-footer {
-  background-color: #f7f7f7;
+.container-wrapper form input[type="text"] {
+  border: none;
+  outline: 0;
+  width: 100%;
+  display: block;
+  font-size: 18px;
+  font-style: italic;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.container-wrapper input[type="checkbox"] {
+  cursor: pointer;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  outline: 0;
+  margin-top: -3px;
+}
+
+.container-wrapper input[type="text"]:disabled {
+  border: none;
+  background-color: #fff;
+}
+
+.container-wrapper input[type=checkbox]::before {
+  font-family: 'FontAwesome', sans-serif;
+  font-size: 14px;
+  color: transparent !important;
+  content: "\f00c";
+  background-color: #fff;
+  display: block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgb(154, 149, 149);
+  margin-right: 6px;
+}
+
+.container-wrapper input[type=checkbox]:checked::before {
+  color: rgb(108, 103, 108) !important;
+}
+
+.container-wrapper ul li {
+  border-bottom: 1px solid #ddd;
+  cursor: move;
+}
+
+.header-text {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 300;
+  padding: 1rem 2rem;
+  color: rgb(108, 103, 108);
+  border-bottom: 1px solid #ddd;
+}
+
+.input-wrapper {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.todo-item {
+  display: flex;
+  padding: 1rem 2rem;
+  font-size: 20px;
+}
+
+.strike-line {
+  text-decoration: line-through;
+}
+
+.fa-level-down {
+  padding-right: 2rem;
+  padding-top: 1rem;
+  font-size: 20px;
+}
+
+.d-none {
+  display: none;
+}
+
+.trash-btn {
+  margin-left: 0.5rem;
+}
+
+.fa:hover {
+  color: rgb(57, 52, 52);
+}
+
+.fa.fa-arrows-rotate,
+.fa.fa-level-down {
+  transform: rotate(90deg);
+}
+
+.fa.fa-level-down {
+  position: absolute;
+  padding-bottom: 20px;
+  right: 20px;
+  top: 15px;
+}
+
+.fa-custom,
+.fa-ellipsis-v {
+  color: #989790;
+}
+
+.highlight {
+  color: #000;
+  background-color: rgb(236, 249, 242);
+}
+
+.highlight .fa {
+  color: #000;
+}
+
+.item-description {
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  outline: 0;
+  padding-left: 8px;
+  color: rgb(108, 103, 108);
+  background-color: rgb(236, 249, 242);
+}
+
+.closure-text {
+  background-color: #fafafa;
   text-align: center;
-  padding: 16px;
-}
-
-.cleartodo a {
-  margin-left: 20px;
-  padding: 10px;
-  text-align: center;
-  color: #525252;
-  text-decoration: none;
-}
-
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48;
+  font-weight: 100;
+  padding: 1.2rem;
+  color: rgb(135, 129, 135);
+  font-size: 18px;
 }
